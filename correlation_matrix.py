@@ -38,8 +38,6 @@ columns = [
 file_path = "cleaned_data.csv"  # Replace with your file path
 df = pd.read_csv(file_path, header=None)
 
-# Swap columns 8 and 15
-df[[8, 15]] = df[[15, 8]]
 
 # Drop the last column (the extra 0)
 #df = df.iloc[:, :-1]
