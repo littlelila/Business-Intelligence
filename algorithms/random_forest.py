@@ -7,7 +7,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load your dataset (assuming it has headers)
-df = pd.read_csv('cleaned_data.csv')
+df = pd.read_csv('../difference_combined_scaled_cleaned_data.csv')
+
+#df = df.drop(columns=["matchId"])
 
 # Ensure your dataset has no missing values
 df.dropna(inplace=True)
@@ -17,15 +19,16 @@ X = df.drop(columns=['blueWin'])
 y = df['blueWin']
 
 # Split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=69)
+
 
 # Initialize and train the RandomForestClassifier
 model = RandomForestClassifier(
-    n_estimators=100,    # Number of trees in the forest
-    max_depth=None,      # Maximum depth of each tree (None means nodes are expanded until all leaves are pure)
-    min_samples_split=2, # Minimum samples required to split an internal node
-    min_samples_leaf=1,  # Minimum samples required to be at a leaf node
-    random_state=42      # Ensures reproducibility
+    n_estimators=300,
+    max_depth=10,
+    min_samples_leaf=10,
+    bootstrap=True,
+    random_state=69      # Ensures reproducibility
 )
 model.fit(X_train, y_train)
 

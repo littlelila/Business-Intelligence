@@ -7,7 +7,9 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 
 # Load your dataset (assuming it has headers)
-df = pd.read_csv('cleaned_data.csv')
+df = pd.read_csv('../match_data_v5.csv')
+
+df = df.drop(columns=["matchId"])
 
 # Ensure your dataset has no missing values
 df.dropna(inplace=True)
